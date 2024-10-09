@@ -10,28 +10,23 @@ class TestProfileNavigation:
         driver.get('https://stellarburgers.nomoreparties.site/')
         driver.find_element(By.XPATH, MAIN_LK_BUTTON).click()
 
-        # Ожидаем, что URL изменится на личный кабинет
         WebDriverWait(driver, 5).until(EC.url_to_be('https://stellarburgers.nomoreparties.site/login'))
-        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/login', "Не удалось перейти на страницу личного кабинета"
+        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/login'
 
     def test_navigate_from_profile_to_constructor(self, driver):
         driver.get('https://stellarburgers.nomoreparties.site/')
         driver.find_element(By.XPATH, MAIN_LK_BUTTON).click()
 
-        # Переход из личного кабинета в конструктор
         driver.find_element(By.XPATH, CONSTRUCTOR_BUTTON_XPATH).click()
 
-        # Ожидаем, что URL изменится на страницу конструктора
         WebDriverWait(driver, 5).until(EC.url_to_be('https://stellarburgers.nomoreparties.site/'))
-        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/', "Не удалось перейти на страницу конструктора"
+        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/'
 
     def test_navigate_from_profile_to_logo(self, driver):
         driver.get('https://stellarburgers.nomoreparties.site/')
         driver.find_element(By.XPATH, MAIN_LK_BUTTON).click()
 
-        # Переход по клику на логотип Stellar Burgers
         driver.find_element(By.CSS_SELECTOR, LOGO_CSS).click()
 
-        # Ожидаем, что URL изменится на главную страницу
         WebDriverWait(driver, 5).until(EC.url_to_be('https://stellarburgers.nomoreparties.site/'))
-        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/', "Не удалось перейти на главную страницу"
+        assert driver.current_url == 'https://stellarburgers.nomoreparties.site/'

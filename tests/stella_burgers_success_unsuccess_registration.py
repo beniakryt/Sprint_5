@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import *
-from helpers import generate_unique_email  # Импорт функции
+from helpers import generate_unique_email
 
 class TestStellarBurgers:
     @pytest.mark.parametrize("name, email, password", [
@@ -18,10 +18,8 @@ class TestStellarBurgers:
         driver.find_element(By.XPATH, PASSWORD_FIELD_XPATH).send_keys(password)
         driver.find_element(By.XPATH, SUBMIT_REGISTRATION_BUTTON_XPATH).click()
 
-        # Ожидаем, что URL изменится на 'login'
         WebDriverWait(driver, 3).until(EC.url_to_be('https://stellarburgers.nomoreparties.site/login'))
 
-        # Проверяем, что регистрация прошла успешно
         assert driver.current_url == 'https://stellarburgers.nomoreparties.site/login'
 
     def test_registration_with_incorrect_password(self, driver):
